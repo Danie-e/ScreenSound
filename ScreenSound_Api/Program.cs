@@ -23,7 +23,7 @@ app.MapGet("/Bandas", ([FromServices] DAL<Banda> bandas) =>
 
 app.MapGet("/Bandas/{nome}", ([FromServices] DAL<Banda> bandas, string nome) =>
 {
-    Banda banda = bandas.ObterPor(banda => banda.Nome.ToUpper().Equals(nome.ToUpper()));
+    Banda? banda = bandas.ObterPor(banda => banda.Nome.ToUpper().Equals(nome.ToUpper()));
 
     if (banda is null)
         return Results.NotFound();
@@ -31,10 +31,19 @@ app.MapGet("/Bandas/{nome}", ([FromServices] DAL<Banda> bandas, string nome) =>
         return Results.Ok(banda);
 });
 
-app.MapGet("/Bandas", ([FromServices] DAL<Banda> bandas, [FromBody] Banda banda) =>
+app.MapPost("/Bandas", ([FromServices] DAL<Banda> bandas, [FromBody] Banda banda) =>
 {
     bandas.Inserir(banda);
     return Results.Ok();
 });
 
+app.MapDelete("/Bandas/{idBanda}", ([FromServices] DAL<Banda> bandas, int idBanda) =>
+{
+    Banda? banda = bandas.ObterPor(banda => banda.Id == idBanda);
+    if (banda is null)
+        return Results.NotFound();
+    else
+        bandas.Deletar(banda);
+    return Results.Ok();
+});
 app.Run();
