@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Screen_Sound.Banco;
 using Screen_Sound.Models;
+using ScreenSound_Api.Requests;
 
 namespace ScreenSound_Api.Endpoints
 {
@@ -29,9 +30,9 @@ namespace ScreenSound_Api.Endpoints
                     return Results.Ok(banda);
             });
 
-            app.MapPost("/Bandas", ([FromServices] DAL<Banda> bandas, [FromBody] Banda banda) =>
+            app.MapPost("/Bandas", ([FromServices] DAL<Banda> bandas, [FromBody] BandaRequest banda) =>
             {
-                bandas.Inserir(banda);
+                bandas.Inserir(new(banda.Nome, banda.Bio));
                 return Results.Ok();
             });
 
@@ -45,9 +46,9 @@ namespace ScreenSound_Api.Endpoints
                 return Results.Ok();
             });
 
-            app.MapPut("/Bandas", ([FromServices] DAL<Banda> bandas, [FromBody] Banda banda) =>
+            app.MapPut("/Bandas", ([FromServices] DAL<Banda> bandas, [FromBody] BandaRequest banda) =>
             {
-                Banda? bandaEncontrada = bandas.ObterPor(b => b.Id == banda.Id);
+                Banda? bandaEncontrada = bandas.ObterPor(b => b.Nome == banda.Nome);
 
                 if (bandaEncontrada is null)
                     return Results.NotFound();
