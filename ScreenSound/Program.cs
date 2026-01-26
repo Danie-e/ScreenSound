@@ -2,7 +2,9 @@
 {
     private static void Main(string[] args)
     {
-        List<string> listaDeBandas = ["U2", "Linkin Park"];
+        Dictionary<string, List<int>> listaDeBandas = new();
+        listaDeBandas.Add("U2", [0, 1, 2]);
+        listaDeBandas.Add("Linkin Park", [2, 3, 4]);
 
         string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
         ExibirOpcoesDoMenu();
@@ -78,7 +80,7 @@
 
                 Console.Write("Digite o nome da banda que deseja cadastrar: ");
                 string nomeDaBanda = Console.ReadLine()!;
-                listaDeBandas.Add(nomeDaBanda);
+                listaDeBandas.Add(nomeDaBanda, []);
                 Console.WriteLine($"\nA banda {nomeDaBanda} foi cadastrada com sucesso!");
 
                 Thread.Sleep(2000);
@@ -90,7 +92,7 @@
                 ExibeCabecalhoOpcao("Listar Bnadas");
 
                 Console.WriteLine("As bandas cadastradas são:");
-                foreach (string banda in listaDeBandas)
+                foreach (string banda in listaDeBandas.Keys)
                 {
                     Console.WriteLine($"- {banda}");
                 }
