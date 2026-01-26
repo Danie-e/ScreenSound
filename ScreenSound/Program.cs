@@ -46,7 +46,7 @@
                     RegistrarBanda();
                     break;
                 case 2:
-                    Console.WriteLine("Opção de listar bandas escolhida.");
+                    ListarBandas();
                     break;
                 case 3:
                     Console.WriteLine("Opção de avaliar bandas escolhida.");
@@ -62,9 +62,19 @@
                     break;
             }
 
-            void RegistrarBanda()
+            void ExibeCabecalhoOpcao(string nome)
             {
                 Console.Clear();
+
+                string asteriscos = string.Empty.PadLeft(nome.Length, '*');
+                Console.WriteLine(asteriscos);
+                Console.WriteLine(nome);
+                Console.WriteLine(asteriscos);
+            }
+
+            void RegistrarBanda()
+            {
+                ExibeCabecalhoOpcao("Registrar Banda");
 
                 Console.Write("Digite o nome da banda que deseja cadastrar: ");
                 string nomeDaBanda = Console.ReadLine()!;
@@ -73,7 +83,22 @@
 
                 Thread.Sleep(2000);
                 ExibirOpcoesDoMenu();
+            }
 
+            void ListarBandas()
+            {
+                ExibeCabecalhoOpcao("Listar Bnadas");
+
+                Console.WriteLine("As bandas cadastradas são:");
+                foreach (string banda in listaDeBandas)
+                {
+                    Console.WriteLine($"- {banda}");
+                }
+
+                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
+                Console.ReadKey();
+
+                ExibirOpcoesDoMenu();
             }
         }
     }
