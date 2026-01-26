@@ -2,9 +2,9 @@
 {
     private static void Main(string[] args)
     {
-        string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
+        List<string> listaDeBandas = ["U2", "Linkin Park"];
 
-        ExibirMensagemDeBoasVindas();
+        string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
         ExibirOpcoesDoMenu();
 
 
@@ -24,6 +24,10 @@
 
         void ExibirOpcoesDoMenu()
         {
+            Console.Clear();
+
+            ExibirMensagemDeBoasVindas();
+
             Console.WriteLine("\nEscolha uma das opções abaixo:");
             Console.WriteLine("1 - Cadastrar banda");
             Console.WriteLine("2 - Listar bandas");
@@ -39,7 +43,7 @@
             switch (opcaoEscolhida)
             {
                 case 1:
-                    Console.WriteLine("Opção de cadastrar banda escolhida.");
+                    RegistrarBanda();
                     break;
                 case 2:
                     Console.WriteLine("Opção de listar bandas escolhida.");
@@ -56,6 +60,20 @@
                 default:
                     Console.WriteLine("Opção inválida. Tente novamente.");
                     break;
+            }
+
+            void RegistrarBanda()
+            {
+                Console.Clear();
+
+                Console.Write("Digite o nome da banda que deseja cadastrar: ");
+                string nomeDaBanda = Console.ReadLine()!;
+                listaDeBandas.Add(nomeDaBanda);
+                Console.WriteLine($"\nA banda {nomeDaBanda} foi cadastrada com sucesso!");
+
+                Thread.Sleep(2000);
+                ExibirOpcoesDoMenu();
+
             }
         }
     }
