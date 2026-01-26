@@ -31,9 +31,32 @@
             Console.WriteLine("4 - Exibir média  bandas");
             Console.WriteLine("0 - Sair");
 
-            Console.Write("Digite a opção escolhida: ");
+            Console.Write("\nDigite a opção escolhida: ");
             int opcaoEscolhida = int.Parse(Console.ReadLine()!);
 
+            Console.Write("\n");
+
+            switch (opcaoEscolhida)
+            {
+                case 1:
+                    Console.WriteLine("Opção de cadastrar banda escolhida.");
+                    break;
+                case 2:
+                    Console.WriteLine("Opção de listar bandas escolhida.");
+                    break;
+                case 3:
+                    Console.WriteLine("Opção de avaliar bandas escolhida.");
+                    break;
+                case 4:
+                    Console.WriteLine("Opção de exibir média bandas escolhida.");
+                    break;
+                case 0:
+                    Console.WriteLine("Saindo do programa. Até mais!");
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    break;
+            }
         }
     }
 }
