@@ -51,7 +51,7 @@
                     ListarBandas();
                     break;
                 case 3:
-                    Console.WriteLine("Opção de avaliar bandas escolhida.");
+                    AvaliarBandas();
                     break;
                 case 4:
                     Console.WriteLine("Opção de exibir média bandas escolhida.");
@@ -96,6 +96,28 @@
                 {
                     Console.WriteLine($"- {banda}");
                 }
+
+                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
+                Console.ReadKey();
+
+                ExibirOpcoesDoMenu();
+            }
+
+            void AvaliarBandas()
+            {
+                ExibeCabecalhoOpcao("Avaliar Bandas");
+                Console.Write("Digite o nome da banda que deseja avaliar: ");
+                string nomeDaBanda = Console.ReadLine()!;
+
+                if (listaDeBandas.ContainsKey(nomeDaBanda))
+                {
+                    Console.Write($"Qual a nota que você deseja dar para a banda {nomeDaBanda}? ");
+                    int notaDaBanda = int.Parse(Console.ReadLine()!);
+                    listaDeBandas[nomeDaBanda]!.Add(notaDaBanda);
+                    Console.WriteLine($"\nA nota {notaDaBanda} foi registrada com sucesso para a banda {nomeDaBanda}!");
+                }
+                else
+                    Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
 
                 Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
                 Console.ReadKey();
