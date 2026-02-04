@@ -2,8 +2,8 @@
 
 internal class Musica
 {
-    string Nome = string.Empty;
-    string Artista = string.Empty;
-    int Duracao = 0;
-    bool Disponivel = true;
+    public string Nome = string.Empty;
+    public string Artista = string.Empty;
+    public int Duracao = 0;
+    public bool Disponivel = true;
 }

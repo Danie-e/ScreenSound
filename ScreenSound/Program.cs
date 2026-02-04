@@ -1,4 +1,6 @@
-﻿internal class Program
+﻿using ScreenSound.Models;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -6,8 +8,15 @@
         listaDeBandas.Add("U2", [0, 1, 2]);
         listaDeBandas.Add("Linkin Park", [2, 3, 4]);
 
+        Musica musica = new Musica();
+        musica.Nome = "Numb";
+        musica.Artista = "Linkin Park";
+        musica.Duracao = 10;
+
+        Console.WriteLine($"A musica {musica.Nome} pertence ao artista {musica.Artista}");
+
         string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
-        ExibirOpcoesDoMenu();
+        //ExibirOpcoesDoMenu();
 
 
         void ExibirMensagemDeBoasVindas()
