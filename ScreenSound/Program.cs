@@ -1,4 +1,7 @@
-﻿internal class Program
+﻿using ScreenSound.Models;
+using System.Security.Cryptography.X509Certificates;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -6,8 +9,25 @@
         listaDeBandas.Add("U2", [0, 1, 2]);
         listaDeBandas.Add("Linkin Park", [2, 3, 4]);
 
+        Banda banda = new Banda("Linkin Park");
+        Album album = new Album("Meteora");
+
+        Musica musica = new Musica("Numb", banda)
+        {
+            Disponivel = true,
+            Duracao = 10
+        };
+
+        album.AdicionarMusica(musica);
+        banda.AdicionarAlbum(album);
+
+
+        banda.ExibirAlbunsDaBanda();
+        album.ExibirMusicasDoAlbum();
+        musica.ExibirFichaTecnica();
+
         string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
-        ExibirOpcoesDoMenu();
+        //ExibirOpcoesDoMenu();
 
 
         void ExibirMensagemDeBoasVindas()
