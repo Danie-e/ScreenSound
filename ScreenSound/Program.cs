@@ -9,18 +9,18 @@ internal class Program
         listaDeBandas.Add("U2", [0, 1, 2]);
         listaDeBandas.Add("Linkin Park", [2, 3, 4]);
 
-        Musica musica = new Musica();
-        musica.Nome = "Numb";
-        musica.Artista = "Linkin Park";
-        musica.Duracao = 10;
+        Banda banda = new Banda("Linkin Park");
+        Album album = new Album("Meteora");
 
-        Album album = new Album();
-        album.Nome = "Meteora";
+        Musica musica = new Musica("Numb", banda)
+        {
+            Disponivel = true,
+            Duracao = 10
+        };
+
         album.AdicionarMusica(musica);
-
-        Banda banda = new Banda();
-        banda.Nome = "Linkin Park";
         banda.AdicionarAlbum(album);
+
 
         banda.ExibirAlbunsDaBanda();
         album.ExibirMusicasDoAlbum();

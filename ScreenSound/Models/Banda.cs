@@ -2,7 +2,11 @@
 
 internal class Banda
 {
-    public string Nome { get; set; }
+    public Banda(string nome)
+    {
+        Nome = nome;
+    }
+    public readonly string Nome;
     private List<Album> listaDeAlbuns { get; set; } = new();
 
     public void AdicionarAlbum(Album album)

@@ -2,7 +2,11 @@
 
 internal class Album
 {
-    public string Nome { get; set; }
+    public Album(string nome)
+    {
+        Nome=nome;
+    }
+    public readonly string Nome;
     public double Duracao  => listaMusicas.Average(m => m.Duracao);
     private List<Musica> listaMusicas { get; set; } = new();
 
