@@ -13,7 +13,7 @@ internal class Program
         musica.Artista = "Linkin Park";
         musica.Duracao = 10;
 
-        Console.WriteLine($"A musica {musica.Nome} pertence ao artista {musica.Artista}");
+        musica.ExibirFichaTecnica();
 
         string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
         //ExibirOpcoesDoMenu();
