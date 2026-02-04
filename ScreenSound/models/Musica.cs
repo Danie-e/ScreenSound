@@ -2,10 +2,12 @@
 
 internal class Musica
 {
-    public string Nome = string.Empty;
-    public string Artista = string.Empty;
-    public int Duracao = 0;
-    public bool Disponivel = true;
+    public string Nome { get; set; } = string.Empty;
+    public string Artista { get; set; } = string.Empty;
+    public int Duracao { get; set; } = 0;
+    public bool Disponivel { get; set; } = true;
+    public string DescricaoResumida => $"A musica {Nome} pertence ao artista {Artista}.";
+
 
     public void ExibirFichaTecnica()
     {
