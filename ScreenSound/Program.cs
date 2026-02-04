@@ -14,6 +14,11 @@ internal class Program
         musica.Artista = "Linkin Park";
         musica.Duracao = 10;
 
+        Album album = new Album();
+        album.Nome = "Meteora";
+        album.AdicionarMusica(musica);
+
+        album.ExibirMusicasDoAlbum();
         musica.ExibirFichaTecnica();
 
         string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
