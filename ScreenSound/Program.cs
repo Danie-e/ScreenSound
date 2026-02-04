@@ -18,6 +18,11 @@ internal class Program
         album.Nome = "Meteora";
         album.AdicionarMusica(musica);
 
+        Banda banda = new Banda();
+        banda.Nome = "Linkin Park";
+        banda.AdicionarAlbum(album);
+
+        banda.ExibirAlbunsDaBanda();
         album.ExibirMusicasDoAlbum();
         musica.ExibirFichaTecnica();
 

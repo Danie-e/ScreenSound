@@ -3,6 +3,7 @@
 internal class Album
 {
     public string Nome { get; set; }
+    public double Duracao  => listaMusicas.Average(m => m.Duracao);
     private List<Musica> listaMusicas { get; set; } = new();
 
     public void AdicionarMusica(Musica musica)
@@ -14,7 +15,7 @@ internal class Album
     {
         Console.WriteLine($"O album {Nome} possue as seguintes musicas: \n");
 
-        foreach (var musica in listaMusicas)
+        foreach (Musica musica in listaMusicas)
             Console.WriteLine(musica.DescricaoResumida);
     }
 }
