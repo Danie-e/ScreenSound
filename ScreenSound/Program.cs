@@ -16,9 +16,9 @@ internal class Program
         album.AdicionarMusica(musica);
         banda.AdicionarAlbum(album);
 
-        banda.AdicionarNota(10);
-        banda.AdicionarNota(5);
-        banda.AdicionarNota(2);
+        banda.AdicionarNota(new(10));
+        banda.AdicionarNota(new(5));
+        banda.AdicionarNota(new(2));
 
         Dictionary<string, Banda> listaDeBandas = new();
         listaDeBandas.Add(banda.Nome, banda);
@@ -160,7 +160,7 @@ internal class Program
                 {
                     Console.Write($"Qual a nota que você deseja dar para a banda {nomeDaBanda}? ");
                     int notaDaBanda = int.Parse(Console.ReadLine()!);
-                    listaDeBandas[nomeDaBanda].AdicionarNota(notaDaBanda);
+                    listaDeBandas[nomeDaBanda].AdicionarNota(new(notaDaBanda));
                     Console.WriteLine($"\nA nota {notaDaBanda} foi registrada com sucesso para a banda {nomeDaBanda}!");
                 }
                 else
