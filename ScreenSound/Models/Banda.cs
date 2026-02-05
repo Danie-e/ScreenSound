@@ -2,12 +2,16 @@
 
 internal class Banda
 {
+    private List<Album> listaDeAlbuns { get; set; } = new();
+    private List<int> Notas { get; set; } = new();
     public Banda(string nome)
     {
         Nome = nome;
     }
+
     public readonly string Nome;
-    private List<Album> listaDeAlbuns { get; set; } = new();
+    public double Media => Notas.Average();
+
 
     public void AdicionarAlbum(Album album)
     {
@@ -20,6 +24,11 @@ internal class Banda
 
         foreach (Album album in listaDeAlbuns)
             Console.WriteLine($"Album: {album.Nome} ({album.Duracao})");
+    }
+
+    public void AdicionarNota(int nota)
+    {
+        Notas.Add(nota);
     }
 
 }

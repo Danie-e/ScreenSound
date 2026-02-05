@@ -4,10 +4,10 @@ internal class Album
 {
     public Album(string nome)
     {
-        Nome=nome;
+        Nome = nome;
     }
     public readonly string Nome;
-    public double Duracao  => listaMusicas.Average(m => m.Duracao);
+    public double Duracao => listaMusicas.Count > 0 ? listaMusicas.Average(m => m.Duracao) : 0;
     private List<Musica> listaMusicas { get; set; } = new();
 
     public void AdicionarMusica(Musica musica)
