@@ -1,4 +1,5 @@
 ﻿using ScreenSound.Models;
+using ScreenSound.Models.Menus;
 
 internal class Program
 {
@@ -64,22 +65,28 @@ internal class Program
             switch (opcaoEscolhida)
             {
                 case 1:
-                    RegistrarBanda();
+                    MenuRegistrarBanda menuRegistrarBanda=new();
+                    menuRegistrarBanda.Executar(listaDeBandas);
                     break;
                 case 2:
-                    RegistrarAlbum();
+                    MenuRegistrarAlbum menuRegistrarAlbum=new();
+                    menuRegistrarAlbum.Executar(listaDeBandas);
                     break;
                 case 3:
-                    ListarBandas();
+                    MenuListarBandas menuListarBandas=new();
+                    menuListarBandas.Executar(listaDeBandas);
                     break;
                 case 4:
-                    AvaliarBandas();
+                    MenuAvaliarBandas menuAvaliarBandas = new();
+                    menuAvaliarBandas.Executar(listaDeBandas);
                     break;
                 case 5:
-                    ExibirMediaBanda();
+                    MenuExibirMediaBanda menuExibirMediaBanda = new();
+                    menuExibirMediaBanda.Executar(listaDeBandas);
                     break;
                 case 6:
-                    ExibirDetalhesBanda();
+                    MenuExibirDetalhes menuExibirDetalhes = new();
+                    menuExibirDetalhes.Executar(listaDeBandas);
                     break;
                 case 0:
                     Console.WriteLine("Saindo do programa. Até mais!");
@@ -89,123 +96,6 @@ internal class Program
                     break;
             }
 
-            void ExibeCabecalhoOpcao(string nome)
-            {
-                Console.Clear();
-
-                string asteriscos = string.Empty.PadLeft(nome.Length, '*');
-                Console.WriteLine(asteriscos);
-                Console.WriteLine(nome);
-                Console.WriteLine(asteriscos);
-            }
-
-            void RegistrarBanda()
-            {
-                ExibeCabecalhoOpcao("Registrar Banda");
-
-                Console.Write("Digite o nome da banda que deseja cadastrar: ");
-                string nomeDaBanda = Console.ReadLine()!;
-                listaDeBandas.Add(nomeDaBanda, new(nomeDaBanda));
-                Console.WriteLine($"\nA banda {nomeDaBanda} foi cadastrada com sucesso!");
-
-                Thread.Sleep(2000);
-                ExibirOpcoesDoMenu();
-            }
-
-            void RegistrarAlbum()
-            {
-                ExibeCabecalhoOpcao("Registrar Album");
-
-                Console.Write("Digite o nome da banda que deseja cadastrar novo album: ");
-                string nomeDaBanda = Console.ReadLine()!;
-
-                if (listaDeBandas.ContainsKey(nomeDaBanda))
-                {
-                    Console.Write($"Qual o nome do album que você deseja registrar? ");
-                    Album novoAlbum = new(Console.ReadLine()!);
-
-                    listaDeBandas[nomeDaBanda].AdicionarAlbum(novoAlbum);
-                    Console.WriteLine($"\nO album {novoAlbum.Nome} foi registrada com sucesso para a banda {nomeDaBanda}!");
-                }
-                else
-                    Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-
-                Thread.Sleep(2000);
-                ExibirOpcoesDoMenu();
-            }
-
-            void ListarBandas()
-            {
-                ExibeCabecalhoOpcao("Listar Bnadas");
-
-                Console.WriteLine("As bandas cadastradas são:");
-                foreach (string banda in listaDeBandas.Keys)
-                {
-                    Console.WriteLine($"- {banda}");
-                }
-
-                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-                Console.ReadKey();
-
-                ExibirOpcoesDoMenu();
-            }
-
-            void AvaliarBandas()
-            {
-                ExibeCabecalhoOpcao("Avaliar Bandas");
-                Console.Write("Digite o nome da banda que deseja avaliar: ");
-                string nomeDaBanda = Console.ReadLine()!;
-
-                if (listaDeBandas.ContainsKey(nomeDaBanda))
-                {
-                    Console.Write($"Qual a nota que você deseja dar para a banda {nomeDaBanda}? ");
-                    Avaliacao notaDaBanda = Avaliacao.Parse(Console.ReadLine()!);
-                    listaDeBandas[nomeDaBanda].AdicionarNota(notaDaBanda);
-                    Console.WriteLine($"\nA nota {notaDaBanda.Nota} foi registrada com sucesso para a banda {nomeDaBanda}!");
-                }
-                else
-                    Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-
-                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-                Console.ReadKey();
-
-                ExibirOpcoesDoMenu();
-            }
-
-            void ExibirMediaBanda()
-            {
-                ExibeCabecalhoOpcao("Media Banda");
-                Console.Write("Digite o nome da banda que deseja ver media: ");
-                string nomeDaBanda = Console.ReadLine()!;
-
-                if (listaDeBandas.ContainsKey(nomeDaBanda))
-                {
-                    Console.WriteLine($"\nA media {nomeDaBanda} é de {listaDeBandas[nomeDaBanda].Media:f2}!");
-                }
-                else
-                    Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-
-                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-                Console.ReadKey();
-
-                ExibirOpcoesDoMenu();
-            }
-
-            void ExibirDetalhesBanda()
-            {
-                ExibeCabecalhoOpcao("Detalhes Banda");
-                Console.Write("Digite o nome da banda que deseja ver detalhes: ");
-                string nomeDaBanda = Console.ReadLine()!;
-                if (listaDeBandas.ContainsKey(nomeDaBanda))
-                {
-                    listaDeBandas[nomeDaBanda].ExibirAlbunsDaBanda();
-                }
-                else
-                    Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-                Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-                Console.ReadKey();
-                ExibirOpcoesDoMenu();
-            }
         }
     }
 }
