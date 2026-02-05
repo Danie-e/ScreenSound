@@ -1,9 +1,9 @@
 ﻿
 namespace ScreenSound.Models.Menus;
 
-internal class MenuRegistrarBanda:Menu
+internal class MenuRegistrarBanda : Menu
 {
-    internal void Executar(Dictionary<string, Banda> listaDeBandas)
+    internal override void Executar(Dictionary<string, Banda> listaDeBandas)
     {
         ExibeCabecalhoOpcao("Registrar Banda");
 
@@ -11,7 +11,5 @@ internal class MenuRegistrarBanda:Menu
         string nomeDaBanda = Console.ReadLine()!;
         listaDeBandas.Add(nomeDaBanda, new(nomeDaBanda));
         Console.WriteLine($"\nA banda {nomeDaBanda} foi cadastrada com sucesso!");
-
-        Thread.Sleep(2000);
     }
 }

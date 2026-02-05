@@ -2,7 +2,7 @@
 
 internal class MenuExibirMediaBanda : Menu
 {
-    internal void Executar(Dictionary<string, Banda> listaDeBandas)
+    internal override void Executar(Dictionary<string, Banda> listaDeBandas)
     {
         ExibeCabecalhoOpcao("Media Banda");
         Console.Write("Digite o nome da banda que deseja ver media: ");
@@ -14,9 +14,5 @@ internal class MenuExibirMediaBanda : Menu
         }
         else
             Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-
-        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-        Console.ReadKey();
-
     }
 }

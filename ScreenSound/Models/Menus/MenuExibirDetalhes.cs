@@ -2,7 +2,7 @@
 
 internal class MenuExibirDetalhes : Menu
 {
-    public void Executar(Dictionary<string, Banda> listaDeBandas)
+    internal override void Executar(Dictionary<string, Banda> listaDeBandas)
     {
         ExibeCabecalhoOpcao("Detalhes Banda");
         Console.Write("Digite o nome da banda que deseja ver detalhes: ");
@@ -13,7 +13,5 @@ internal class MenuExibirDetalhes : Menu
         }
         else
             Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-        Console.ReadKey();
     }
 }

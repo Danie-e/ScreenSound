@@ -12,4 +12,6 @@ internal class Menu
         Console.WriteLine(asteriscos);
     }
 
+    internal virtual void Executar(Dictionary<string, Banda> listaDeBandas) {
+    }
 }

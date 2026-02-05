@@ -3,7 +3,7 @@ namespace ScreenSound.Models.Menus;
 
 internal class MenuRegistrarAlbum:Menu
 {
-    internal void Executar(Dictionary<string, Banda> listaDeBandas)
+    internal override void Executar(Dictionary<string, Banda> listaDeBandas)
     {
         ExibeCabecalhoOpcao("Registrar Album");
 
@@ -20,7 +20,5 @@ internal class MenuRegistrarAlbum:Menu
         }
         else
             Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-
-        Thread.Sleep(2000);
     }
 }

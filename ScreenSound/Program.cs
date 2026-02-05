@@ -25,6 +25,15 @@ internal class Program
         listaDeBandas.Add(banda.Nome, banda);
 
         string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
+
+        Dictionary<int, Menu> opcoes = new();
+        opcoes.Add(1, new MenuRegistrarBanda());
+        opcoes.Add(2, new MenuRegistrarAlbum());
+        opcoes.Add(3, new MenuListarBandas());
+        opcoes.Add(4, new MenuAvaliarBandas());
+        opcoes.Add(5, new MenuExibirMediaBanda());
+        opcoes.Add(6, new MenuExibirDetalhes());
+
         ExibirOpcoesDoMenu();
 
 
@@ -62,40 +71,17 @@ internal class Program
 
             Console.Write("\n");
 
-            switch (opcaoEscolhida)
-            {
-                case 1:
-                    MenuRegistrarBanda menuRegistrarBanda=new();
-                    menuRegistrarBanda.Executar(listaDeBandas);
-                    break;
-                case 2:
-                    MenuRegistrarAlbum menuRegistrarAlbum=new();
-                    menuRegistrarAlbum.Executar(listaDeBandas);
-                    break;
-                case 3:
-                    MenuListarBandas menuListarBandas=new();
-                    menuListarBandas.Executar(listaDeBandas);
-                    break;
-                case 4:
-                    MenuAvaliarBandas menuAvaliarBandas = new();
-                    menuAvaliarBandas.Executar(listaDeBandas);
-                    break;
-                case 5:
-                    MenuExibirMediaBanda menuExibirMediaBanda = new();
-                    menuExibirMediaBanda.Executar(listaDeBandas);
-                    break;
-                case 6:
-                    MenuExibirDetalhes menuExibirDetalhes = new();
-                    menuExibirDetalhes.Executar(listaDeBandas);
-                    break;
-                case 0:
-                    Console.WriteLine("Saindo do programa. Até mais!");
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida. Tente novamente.");
-                    break;
-            }
+            if (opcoes.ContainsKey(opcaoEscolhida))
+                opcoes[opcaoEscolhida].Executar(listaDeBandas);
+            else
+                Console.WriteLine("Opção inválida. Tente novamente.");
 
+            if (opcaoEscolhida > 0)
+            {
+                Console.WriteLine("\nPressione qualquer tecla para continuar...");
+                Console.ReadKey();
+                ExibirOpcoesDoMenu();
+            }
         }
     }
 }

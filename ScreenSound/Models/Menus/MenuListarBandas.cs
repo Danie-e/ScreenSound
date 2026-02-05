@@ -3,7 +3,7 @@ namespace ScreenSound.Models.Menus;
 
 internal class MenuListarBandas: Menu
 {
-    internal void Executar(Dictionary<string, Banda> listaDeBandas)
+    internal override void Executar(Dictionary<string, Banda> listaDeBandas)
     {
         ExibeCabecalhoOpcao("Listar Bnadas");
 
@@ -12,9 +12,5 @@ internal class MenuListarBandas: Menu
         {
             Console.WriteLine($"- {banda}");
         }
-
-        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-        Console.ReadKey();
-
     }
 }

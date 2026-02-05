@@ -3,7 +3,7 @@ namespace ScreenSound.Models.Menus;
 
 internal class MenuAvaliarBandas: Menu
 {
-    internal void Executar(Dictionary<string, Banda> listaDeBandas)
+    internal override void Executar(Dictionary<string, Banda> listaDeBandas)
     {
         ExibeCabecalhoOpcao("Avaliar Bandas");
         Console.Write("Digite o nome da banda que deseja avaliar: ");
@@ -18,8 +18,5 @@ internal class MenuAvaliarBandas: Menu
         }
         else
             Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-
-        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal.");
-        Console.ReadKey();
     }
 }
