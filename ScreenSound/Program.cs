@@ -159,9 +159,9 @@ internal class Program
                 if (listaDeBandas.ContainsKey(nomeDaBanda))
                 {
                     Console.Write($"Qual a nota que você deseja dar para a banda {nomeDaBanda}? ");
-                    int notaDaBanda = int.Parse(Console.ReadLine()!);
-                    listaDeBandas[nomeDaBanda].AdicionarNota(new(notaDaBanda));
-                    Console.WriteLine($"\nA nota {notaDaBanda} foi registrada com sucesso para a banda {nomeDaBanda}!");
+                    Avaliacao notaDaBanda = Avaliacao.Parse(Console.ReadLine()!);
+                    listaDeBandas[nomeDaBanda].AdicionarNota(notaDaBanda);
+                    Console.WriteLine($"\nA nota {notaDaBanda.Nota} foi registrada com sucesso para a banda {nomeDaBanda}!");
                 }
                 else
                     Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
