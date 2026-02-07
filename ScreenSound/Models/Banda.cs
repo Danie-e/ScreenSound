@@ -1,6 +1,6 @@
 ﻿namespace ScreenSound.Models;
 
-internal class Banda
+internal class Banda : IAvaliavel
 {
     private List<Album> listaDeAlbuns { get; set; } = new();
     private List<Avaliacao> notas = new();
@@ -21,6 +21,10 @@ internal class Banda
         }
     }
 
+    public Album RetornaAlbum(string album)
+    {
+        return listaDeAlbuns.FirstOrDefault(a => a.Nome.Equals(album));
+    }
 
     public void AdicionarAlbum(Album album)
     {

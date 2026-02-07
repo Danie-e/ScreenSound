@@ -31,8 +31,9 @@ internal class Program
         opcoes.Add(2, new MenuRegistrarAlbum());
         opcoes.Add(3, new MenuListarBandas());
         opcoes.Add(4, new MenuAvaliarBandas());
-        opcoes.Add(5, new MenuExibirMediaBanda());
-        opcoes.Add(6, new MenuExibirDetalhes());
+        opcoes.Add(5, new MenuAvaliarAlbum());
+        opcoes.Add(6, new MenuExibirMediaBanda());
+        opcoes.Add(7, new MenuExibirDetalhes());
 
         ExibirOpcoesDoMenu();
 
@@ -62,8 +63,9 @@ internal class Program
             Console.WriteLine("2 - Cadastrar Album");
             Console.WriteLine("3 - Listar bandas");
             Console.WriteLine("4 - Avaliar bandas");
-            Console.WriteLine("5 - Exibir média da banda");
-            Console.WriteLine("6 - Exibir detalhes da banda");
+            Console.WriteLine("5 - Avaliar album");
+            Console.WriteLine("6 - Exibir média da banda");
+            Console.WriteLine("7 - Exibir detalhes da banda");
             Console.WriteLine("0 - Sair");
 
             Console.Write("\nDigite a opção escolhida: ");
