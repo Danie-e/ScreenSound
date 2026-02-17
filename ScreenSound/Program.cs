@@ -23,7 +23,8 @@ internal class Program
 
                 //Filter.FiltrarTodosOsGenerosMusicais(musicas);
                 //Order.ExibirListaDeArtistaOrnenados(musicas);
-                Filter.FiltrarArtistasPorGenerosMusical(musicas, "rock");
+                //Filter.FiltrarArtistasPorGenerosMusical(musicas, "rock");
+                Filter.FiltrarMusicasPorArtista(musicas, "Linkin Park");
             }
             catch (Exception ex)
             {
