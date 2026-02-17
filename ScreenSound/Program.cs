@@ -21,8 +21,8 @@ internal class Program
                 //    Console.WriteLine();
                 //}
 
-                Console.WriteLine("Generos musicais:");
-                Filter.FiltrarTodosOsGenerosMusicais(musicas);
+                //Filter.FiltrarTodosOsGenerosMusicais(musicas);
+                Order.ExibirListaDeArtistaOrnenados(musicas);
             }
             catch (Exception ex)
             {
