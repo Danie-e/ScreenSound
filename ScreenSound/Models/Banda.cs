@@ -1,13 +1,30 @@
 ﻿namespace ScreenSound.Models;
 
-internal class Banda
+internal class Banda : IAvaliavel
 {
+    private List<Album> listaDeAlbuns { get; set; } = new();
+    private List<Avaliacao> notas = new();
     public Banda(string nome)
     {
         Nome = nome;
     }
+
     public readonly string Nome;
-    private List<Album> listaDeAlbuns { get; set; } = new();
+    public double Media
+    {
+        get
+        {
+            if (notas.Count == 0)
+                return 0;
+            else
+                return notas.Average(n => n.Nota);
+        }
+    }
+
+    public Album RetornaAlbum(string album)
+    {
+        return listaDeAlbuns.FirstOrDefault(a => a.Nome.Equals(album));
+    }
 
     public void AdicionarAlbum(Album album)
     {
@@ -20,6 +37,11 @@ internal class Banda
 
         foreach (Album album in listaDeAlbuns)
             Console.WriteLine($"Album: {album.Nome} ({album.Duracao})");
+    }
+
+    public void AdicionarNota(Avaliacao nota)
+    {
+        notas.Add(nota);
     }
 
 }
