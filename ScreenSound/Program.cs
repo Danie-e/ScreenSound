@@ -1,5 +1,6 @@
 ﻿using ScreenSound.Models;
 using ScreenSound.Models.Menus;
+using System.Text.Json;
 
 internal class Program
 {
@@ -10,8 +11,13 @@ internal class Program
             try
             {
                 string resposta = await client.GetStringAsync("https://guilhermeonrails.github.io/api-csharp-songs/songs.json");
+
+                List<Musica> musicas = JsonSerializer.Deserialize<List<Musica>>(resposta)!;
                 Console.WriteLine("Resposta da API:");
-                Console.WriteLine(resposta);
+                foreach (var item in musicas)
+                {
+                    item.ExibirFichaTecnica();
+                }
             }
             catch (Exception ex)
             {
