@@ -22,7 +22,8 @@ internal class Program
                 //}
 
                 //Filter.FiltrarTodosOsGenerosMusicais(musicas);
-                Order.ExibirListaDeArtistaOrnenados(musicas);
+                //Order.ExibirListaDeArtistaOrnenados(musicas);
+                Filter.FiltrarArtistasPorGenerosMusical(musicas, "rock");
             }
             catch (Exception ex)
             {
