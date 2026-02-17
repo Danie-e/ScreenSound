@@ -24,7 +24,15 @@ internal class Program
                 //Filter.FiltrarTodosOsGenerosMusicais(musicas);
                 //Order.ExibirListaDeArtistaOrnenados(musicas);
                 //Filter.FiltrarArtistasPorGenerosMusical(musicas, "rock");
-                Filter.FiltrarMusicasPorArtista(musicas, "Linkin Park");
+                //Filter.FiltrarMusicasPorArtista(musicas, "Linkin Park");
+
+                MusicasPreferidas minhasMusicas = new("Daniela");
+                minhasMusicas.AdicionarMusica(musicas[0]);
+                minhasMusicas.AdicionarMusica(musicas[1]);
+                minhasMusicas.AdicionarMusica(musicas[2]);
+                minhasMusicas.AdicionarMusica(musicas[3]);
+
+                minhasMusicas.ExibirMusicasPreferidas();
             }
             catch (Exception ex)
             {
