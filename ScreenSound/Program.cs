@@ -3,8 +3,23 @@ using ScreenSound.Models.Menus;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                string resposta = await client.GetStringAsync("https://guilhermeonrails.github.io/api-csharp-songs/songs.json");
+                Console.WriteLine("Resposta da API:");
+                Console.WriteLine(resposta);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ocorreu um erro ao acessar a API: {ex.Message}");
+            }
+        }
+        return;
+
         Banda banda = new Banda("Linkin Park");
         Album album = new Album("Meteora");
 
