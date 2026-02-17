@@ -26,7 +26,7 @@ internal class Musica
     public readonly string Nome = string.Empty;
     public Banda Artista { get; set; }
     public bool Disponivel { get; set; } = true;
-    public string DescricaoResumida => $"A musica {Nome} pertence ao artista {Artista.Nome}.";
+    public string DescricaoResumida => $"A musica {Nome} pertence ao artista {NomeArtista}.";
 
 
     public void ExibirFichaTecnica()

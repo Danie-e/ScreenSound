@@ -32,7 +32,8 @@ internal class Program
                 minhasMusicas.AdicionarMusica(musicas[2]);
                 minhasMusicas.AdicionarMusica(musicas[3]);
 
-                minhasMusicas.ExibirMusicasPreferidas();
+                //minhasMusicas.ExibirMusicasPreferidas();
+                minhasMusicas.GerarArquivoJson();
             }
             catch (Exception ex)
             {

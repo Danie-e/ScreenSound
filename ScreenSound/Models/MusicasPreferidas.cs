@@ -1,4 +1,6 @@
-﻿namespace ScreenSound.Models;
+﻿using System.Text.Json;
+
+namespace ScreenSound.Models;
 
 internal class MusicasPreferidas
 {
@@ -22,5 +24,21 @@ internal class MusicasPreferidas
 
         foreach (Musica musica in musicasPreferidas)
             Console.WriteLine($"{musica.NomeMusica} por {musica.NomeArtista}");
+    }
+
+    public void GerarArquivoJson()
+    {
+        string nomeArquivo = $"{Nome}_musicas_preferidas.json";
+
+        string json = JsonSerializer.Serialize(new
+        {
+            nome = Nome,
+            musicas = musicasPreferidas
+        }, new JsonSerializerOptions { WriteIndented = true });
+
+        File.WriteAllText(nomeArquivo, json);
+
+        Console.WriteLine($"Arquivo '{nomeArquivo}' gerado com sucesso!");
+        Console.WriteLine(Path.GetFullPath(nomeArquivo));
     }
 }
