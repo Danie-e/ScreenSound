@@ -1,4 +1,6 @@
-﻿internal class Program
+﻿using System.Text;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -20,10 +22,11 @@
 
     static void EscreverBuffer(byte[] buffer)
     {
-        foreach (var meuByte in buffer)
-        {
-            Console.Write(meuByte);
-            Console.Write(" ");
-        }
+        var UTF8 = new UTF8Encoding();
+
+        string texto = UTF8.GetString(buffer);
+
+        Console.Write(texto);
+
     }
 }
