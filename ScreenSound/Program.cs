@@ -1,89 +1,29 @@
-﻿using ScreenSound.Models;
-using ScreenSound.Models.Menus;
-
-internal class Program
+﻿internal class Program
 {
     private static void Main(string[] args)
     {
-        Banda banda = new Banda("Linkin Park");
-        Album album = new Album("Meteora");
+        string enderecoArquivo = "contas.txt";
+        int numeroDeBytesLidos = -1;
 
-        Musica musica = new Musica("Numb", banda)
+        FileStream fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open);
+
+        var buffer = new byte[1024];
+
+        while (numeroDeBytesLidos != 0)
         {
-            Disponivel = true,
-            Duracao = 10
-        };
-
-        album.AdicionarMusica(musica);
-        banda.AdicionarAlbum(album);
-
-        banda.AdicionarNota(new(10));
-        banda.AdicionarNota(new(5));
-        banda.AdicionarNota(new(2));
-
-        Dictionary<string, Banda> listaDeBandas = new();
-        listaDeBandas.Add(banda.Nome, banda);
-
-        string mensagemDeBoasVindas = "Bem vindo ao Screen Sound!";
-
-        Dictionary<int, Menu> opcoes = new();
-        opcoes.Add(1, new MenuRegistrarBanda());
-        opcoes.Add(2, new MenuRegistrarAlbum());
-        opcoes.Add(3, new MenuListarBandas());
-        opcoes.Add(4, new MenuAvaliarBandas());
-        opcoes.Add(5, new MenuAvaliarAlbum());
-        opcoes.Add(6, new MenuExibirMediaBanda());
-        opcoes.Add(7, new MenuExibirDetalhes());
-
-        ExibirOpcoesDoMenu();
-
-
-        void ExibirMensagemDeBoasVindas()
-        {
-            Console.WriteLine(@"
-
-░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
-");
-            Console.WriteLine(mensagemDeBoasVindas);
+            numeroDeBytesLidos = fluxoDeArquivo.Read(buffer, 0, 1024);
+            EscreverBuffer(buffer);
         }
 
-        void ExibirOpcoesDoMenu()
+        Console.ReadLine();
+    }
+
+    static void EscreverBuffer(byte[] buffer)
+    {
+        foreach (var meuByte in buffer)
         {
-            Console.Clear();
-
-            ExibirMensagemDeBoasVindas();
-
-            Console.WriteLine("\nEscolha uma das opções abaixo:");
-            Console.WriteLine("1 - Cadastrar banda");
-            Console.WriteLine("2 - Cadastrar Album");
-            Console.WriteLine("3 - Listar bandas");
-            Console.WriteLine("4 - Avaliar bandas");
-            Console.WriteLine("5 - Avaliar album");
-            Console.WriteLine("6 - Exibir média da banda");
-            Console.WriteLine("7 - Exibir detalhes da banda");
-            Console.WriteLine("0 - Sair");
-
-            Console.Write("\nDigite a opção escolhida: ");
-            int opcaoEscolhida = int.Parse(Console.ReadLine()!);
-
-            Console.Write("\n");
-
-            if (opcoes.ContainsKey(opcaoEscolhida))
-                opcoes[opcaoEscolhida].Executar(listaDeBandas);
-            else
-                Console.WriteLine("Opção inválida. Tente novamente.");
-
-            if (opcaoEscolhida > 0)
-            {
-                Console.WriteLine("\nPressione qualquer tecla para continuar...");
-                Console.ReadKey();
-                ExibirOpcoesDoMenu();
-            }
+            Console.Write(meuByte);
+            Console.Write(" ");
         }
     }
 }
