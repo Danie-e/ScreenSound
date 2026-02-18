@@ -13,17 +13,17 @@ internal class Program
             while (numeroDeBytesLidos != 0)
             {
                 numeroDeBytesLidos = fluxoDeArquivo.Read(buffer, 0, 1024);
-                EscreverBuffer(buffer);
+                EscreverBuffer(buffer, numeroDeBytesLidos);
             }
         }
         Console.ReadLine();
     }
 
-    static void EscreverBuffer(byte[] buffer)
+    static void EscreverBuffer(byte[] buffer, int bytesLidos)
     {
         var UTF8 = new UTF8Encoding();
 
-        string texto = UTF8.GetString(buffer);
+        string texto = UTF8.GetString(buffer, 0, bytesLidos);
 
         Console.Write(texto);
 
