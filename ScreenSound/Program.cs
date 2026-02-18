@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using ScreenSound.Models.ByteBank;
+using System.Text;
 
 internal class Program
 {
@@ -17,12 +18,19 @@ internal class Program
         //    }
         //}
 
+        List<ContaCorrente> listaContas = new();
         using (var fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
         {
             var leitor = new StreamReader(fluxoDeArquivo);
-            var texto = leitor.ReadToEnd();
-            Console.Write(texto);
+            while (!leitor.EndOfStream)
+            {
+                var texto = leitor.ReadLine();
+                ContaCorrente conta = ConvererStringParaContaCorrente(texto);
+                listaContas.Add(conta);
+                Console.WriteLine(@$"A conta do {conta.Titular.Nome} possue R${conta.Saldo} de saldo.");
+            }
         }
+
         Console.ReadLine();
     }
 
@@ -34,5 +42,23 @@ internal class Program
 
         Console.Write(texto);
 
+    }
+
+    static ContaCorrente ConvererStringParaContaCorrente(string linha)
+    {
+        string[] campos = linha.Split(',');
+        int agencia = int.Parse(campos[0]);
+        int numero = int.Parse(campos[1]);
+        double saldo = Convert.ToDouble(campos[2].Replace('.', ','));
+        string titular = campos[3];
+
+        ContaCorrente conta = new ContaCorrente(agencia, numero);
+        conta.Depositar(saldo);
+        conta.Titular = new()
+        {
+            Nome = titular
+        };
+
+        return conta; ;
     }
 }
