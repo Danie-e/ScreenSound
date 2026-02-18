@@ -5,16 +5,23 @@ internal class Program
     private static void Main(string[] args)
     {
         string enderecoArquivo = "contas.txt";
-        int numeroDeBytesLidos = -1;
+        //int numeroDeBytesLidos = -1;
 
-        using (FileStream fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
+        //using (FileStream fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
+        //{
+        //    var buffer = new byte[1024];
+        //    while (numeroDeBytesLidos != 0)
+        //    {
+        //        numeroDeBytesLidos = fluxoDeArquivo.Read(buffer, 0, 1024);
+        //        EscreverBuffer(buffer, numeroDeBytesLidos);
+        //    }
+        //}
+
+        using (var fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
         {
-            var buffer = new byte[1024];
-            while (numeroDeBytesLidos != 0)
-            {
-                numeroDeBytesLidos = fluxoDeArquivo.Read(buffer, 0, 1024);
-                EscreverBuffer(buffer, numeroDeBytesLidos);
-            }
+            var leitor = new StreamReader(fluxoDeArquivo);
+            var texto = leitor.ReadToEnd();
+            Console.Write(texto);
         }
         Console.ReadLine();
     }
