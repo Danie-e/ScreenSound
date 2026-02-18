@@ -7,16 +7,15 @@ internal class Program
         string enderecoArquivo = "contas.txt";
         int numeroDeBytesLidos = -1;
 
-        FileStream fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open);
-
-        var buffer = new byte[1024];
-
-        while (numeroDeBytesLidos != 0)
+        using (FileStream fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
         {
-            numeroDeBytesLidos = fluxoDeArquivo.Read(buffer, 0, 1024);
-            EscreverBuffer(buffer);
+            var buffer = new byte[1024];
+            while (numeroDeBytesLidos != 0)
+            {
+                numeroDeBytesLidos = fluxoDeArquivo.Read(buffer, 0, 1024);
+                EscreverBuffer(buffer);
+            }
         }
-
         Console.ReadLine();
     }
 
